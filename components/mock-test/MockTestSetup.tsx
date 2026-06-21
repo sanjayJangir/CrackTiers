@@ -20,6 +20,7 @@ import {
   SUBJECTS,
 } from "@/lib/constants";
 import { useAuth } from "@/lib/auth-context";
+import { withBasePath } from "@/lib/base-path";
 import { useLanguage } from "@/lib/language-context";
 import { saveMockSession } from "@/lib/mock-test-storage";
 import { cn } from "@/lib/utils";
@@ -48,7 +49,7 @@ export default function MockTestSetup() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/mock-test", {
+      const res = await fetch(withBasePath("/api/mock-test"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

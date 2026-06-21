@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Question, QuestionsResponse } from "@/data/types";
 import { FREE_QUESTION_LIMIT } from "@/lib/constants";
 import { filterQuestionsList } from "@/lib/question-filters";
+import { withBasePath } from "@/lib/base-path";
 
 let cachedQuestions: Question[] | null = null;
 let cachePromise: Promise<Question[]> | null = null;
@@ -12,7 +13,7 @@ async function loadAllQuestions(): Promise<Question[]> {
   if (cachedQuestions) return cachedQuestions;
   if (cachePromise) return cachePromise;
 
-  cachePromise = fetch("/api/questions")
+  cachePromise = fetch(withBasePath("/api/questions"))
     .then(async (res) => {
       if (!res.ok) throw new Error("Failed to load questions");
       const json: QuestionsResponse = await res.json();

@@ -6,6 +6,7 @@ import { AlertCircle, Loader2, Lock, Play } from "lucide-react";
 import type { ExamTestSeries, TestPaper } from "@/data/test-series";
 import { useAuth } from "@/lib/auth-context";
 import { useLanguage } from "@/lib/language-context";
+import { withBasePath } from "@/lib/base-path";
 import { saveMockSession } from "@/lib/mock-test-storage";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +40,7 @@ export default function StartTestButton({
     setLoading(true);
 
     try {
-      const res = await fetch("/api/mock-test", {
+      const res = await fetch(withBasePath("/api/mock-test"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
