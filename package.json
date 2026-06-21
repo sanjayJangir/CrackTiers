@@ -2,6 +2,7 @@
   "name": "cracktiers",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "yarn@1.22.19",
   "scripts": {
     "dev": "next dev",
     "generate:questions": "node scripts/generate-questions.mjs",
